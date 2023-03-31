@@ -50,14 +50,14 @@ class HomeScreen extends StatelessWidget {
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   FloatingActionButton(
-                    onPressed: () => controller.error.showError((context, notificationModel) {
+                    onPressed: () => controller.error.showError((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
-                    onPressed: () => controller.notification.showNotification((context, notificationModel) {
+                    onPressed: () => controller.notification.showNotification((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
                     }),
                     tooltip: 'Show notification',

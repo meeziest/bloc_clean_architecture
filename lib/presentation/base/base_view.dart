@@ -40,14 +40,14 @@ class BaseBlocBuilder<B extends BaseCubit<S>, S> extends StatelessWidget {
             listener: (context, state) {
               state.when(
                 noError: (withPop) => withPop ? Navigator.pop(context) : null,
-                withError: (callback) => callback(context, null),
+                withError: (callback, error) => callback(context),
               );
             },
           ),
           BlocListener<NotificationCubit, NotificationState>(
             listener: (context, state) => state.when(
               noNotification: (withPop) => withPop ? Navigator.pop(context) : null,
-              showNotification: (callback) => callback(context, null),
+              showNotification: (callback, notification) => callback(context),
             ),
           ),
         ],

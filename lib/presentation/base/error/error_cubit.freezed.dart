@@ -19,19 +19,20 @@ mixin _$ErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noError,
-    required TResult Function(ErrorBuilder builder) withError,
+    required TResult Function(ErrorBuilder builder, ErrorModel? errorModel)
+        withError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noError,
-    TResult? Function(ErrorBuilder builder)? withError,
+    TResult? Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noError,
-    TResult Function(ErrorBuilder builder)? withError,
+    TResult Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,7 +141,8 @@ class _$_NoErrorState implements _NoErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noError,
-    required TResult Function(ErrorBuilder builder) withError,
+    required TResult Function(ErrorBuilder builder, ErrorModel? errorModel)
+        withError,
   }) {
     return noError(withPop);
   }
@@ -149,7 +151,7 @@ class _$_NoErrorState implements _NoErrorState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noError,
-    TResult? Function(ErrorBuilder builder)? withError,
+    TResult? Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
   }) {
     return noError?.call(withPop);
   }
@@ -158,7 +160,7 @@ class _$_NoErrorState implements _NoErrorState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noError,
-    TResult Function(ErrorBuilder builder)? withError,
+    TResult Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
     required TResult orElse(),
   }) {
     if (noError != null) {
@@ -214,7 +216,7 @@ abstract class _$$_WithErrorStateCopyWith<$Res> {
           _$_WithErrorState value, $Res Function(_$_WithErrorState) then) =
       __$$_WithErrorStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({ErrorBuilder builder});
+  $Res call({ErrorBuilder builder, ErrorModel? errorModel});
 }
 
 /// @nodoc
@@ -229,12 +231,17 @@ class __$$_WithErrorStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? builder = null,
+    Object? errorModel = freezed,
   }) {
     return _then(_$_WithErrorState(
       null == builder
           ? _value.builder
           : builder // ignore: cast_nullable_to_non_nullable
               as ErrorBuilder,
+      freezed == errorModel
+          ? _value.errorModel
+          : errorModel // ignore: cast_nullable_to_non_nullable
+              as ErrorModel?,
     ));
   }
 }
@@ -242,14 +249,17 @@ class __$$_WithErrorStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_WithErrorState implements _WithErrorState {
-  const _$_WithErrorState(this.builder);
+  const _$_WithErrorState(this.builder, [this.errorModel = null]);
 
   @override
   final ErrorBuilder builder;
+  @override
+  @JsonKey()
+  final ErrorModel? errorModel;
 
   @override
   String toString() {
-    return 'ErrorState.withError(builder: $builder)';
+    return 'ErrorState.withError(builder: $builder, errorModel: $errorModel)';
   }
 
   @override
@@ -257,11 +267,13 @@ class _$_WithErrorState implements _WithErrorState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WithErrorState &&
-            (identical(other.builder, builder) || other.builder == builder));
+            (identical(other.builder, builder) || other.builder == builder) &&
+            (identical(other.errorModel, errorModel) ||
+                other.errorModel == errorModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, builder);
+  int get hashCode => Object.hash(runtimeType, builder, errorModel);
 
   @JsonKey(ignore: true)
   @override
@@ -273,29 +285,30 @@ class _$_WithErrorState implements _WithErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noError,
-    required TResult Function(ErrorBuilder builder) withError,
+    required TResult Function(ErrorBuilder builder, ErrorModel? errorModel)
+        withError,
   }) {
-    return withError(builder);
+    return withError(builder, errorModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noError,
-    TResult? Function(ErrorBuilder builder)? withError,
+    TResult? Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
   }) {
-    return withError?.call(builder);
+    return withError?.call(builder, errorModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noError,
-    TResult Function(ErrorBuilder builder)? withError,
+    TResult Function(ErrorBuilder builder, ErrorModel? errorModel)? withError,
     required TResult orElse(),
   }) {
     if (withError != null) {
-      return withError(builder);
+      return withError(builder, errorModel);
     }
     return orElse();
   }
@@ -333,9 +346,11 @@ class _$_WithErrorState implements _WithErrorState {
 }
 
 abstract class _WithErrorState implements ErrorState {
-  const factory _WithErrorState(final ErrorBuilder builder) = _$_WithErrorState;
+  const factory _WithErrorState(final ErrorBuilder builder,
+      [final ErrorModel? errorModel]) = _$_WithErrorState;
 
   ErrorBuilder get builder;
+  ErrorModel? get errorModel;
   @JsonKey(ignore: true)
   _$$_WithErrorStateCopyWith<_$_WithErrorState> get copyWith =>
       throw _privateConstructorUsedError;

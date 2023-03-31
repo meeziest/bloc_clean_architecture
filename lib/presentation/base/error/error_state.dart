@@ -1,6 +1,6 @@
 part of 'error_cubit.dart';
 
-typedef ErrorBuilder = Widget Function(BuildContext context, ErrorModel? error);
+typedef ErrorBuilder = void Function(BuildContext context, ErrorModel? error);
 
 @freezed
 class ErrorState with _$ErrorState {

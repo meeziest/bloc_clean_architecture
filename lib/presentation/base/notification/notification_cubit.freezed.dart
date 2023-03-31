@@ -19,19 +19,19 @@ mixin _$NotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(NotificationBuilder? callback) showNotification,
+    required TResult Function(NotificationBuilder callback) showNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(NotificationBuilder? callback)? showNotification,
+    TResult? Function(NotificationBuilder callback)? showNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(NotificationBuilder? callback)? showNotification,
+    TResult Function(NotificationBuilder callback)? showNotification,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,7 +141,7 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(NotificationBuilder? callback) showNotification,
+    required TResult Function(NotificationBuilder callback) showNotification,
   }) {
     return noNotification(withPop);
   }
@@ -150,7 +150,7 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(NotificationBuilder? callback)? showNotification,
+    TResult? Function(NotificationBuilder callback)? showNotification,
   }) {
     return noNotification?.call(withPop);
   }
@@ -159,7 +159,7 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(NotificationBuilder? callback)? showNotification,
+    TResult Function(NotificationBuilder callback)? showNotification,
     required TResult orElse(),
   }) {
     if (noNotification != null) {
@@ -216,7 +216,7 @@ abstract class _$$ShowNotificationStateCopyWith<$Res> {
           $Res Function(_$ShowNotificationState) then) =
       __$$ShowNotificationStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({NotificationBuilder? callback});
+  $Res call({NotificationBuilder callback});
 }
 
 /// @nodoc
@@ -230,13 +230,13 @@ class __$$ShowNotificationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? callback = freezed,
+    Object? callback = null,
   }) {
     return _then(_$ShowNotificationState(
-      freezed == callback
+      null == callback
           ? _value.callback
           : callback // ignore: cast_nullable_to_non_nullable
-              as NotificationBuilder?,
+              as NotificationBuilder,
     ));
   }
 }
@@ -247,7 +247,7 @@ class _$ShowNotificationState implements ShowNotificationState {
   const _$ShowNotificationState(this.callback);
 
   @override
-  final NotificationBuilder? callback;
+  final NotificationBuilder callback;
 
   @override
   String toString() {
@@ -277,7 +277,7 @@ class _$ShowNotificationState implements ShowNotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(NotificationBuilder? callback) showNotification,
+    required TResult Function(NotificationBuilder callback) showNotification,
   }) {
     return showNotification(callback);
   }
@@ -286,7 +286,7 @@ class _$ShowNotificationState implements ShowNotificationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(NotificationBuilder? callback)? showNotification,
+    TResult? Function(NotificationBuilder callback)? showNotification,
   }) {
     return showNotification?.call(callback);
   }
@@ -295,7 +295,7 @@ class _$ShowNotificationState implements ShowNotificationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(NotificationBuilder? callback)? showNotification,
+    TResult Function(NotificationBuilder callback)? showNotification,
     required TResult orElse(),
   }) {
     if (showNotification != null) {
@@ -337,10 +337,10 @@ class _$ShowNotificationState implements ShowNotificationState {
 }
 
 abstract class ShowNotificationState implements NotificationState {
-  const factory ShowNotificationState(final NotificationBuilder? callback) =
+  const factory ShowNotificationState(final NotificationBuilder callback) =
       _$ShowNotificationState;
 
-  NotificationBuilder? get callback;
+  NotificationBuilder get callback;
   @JsonKey(ignore: true)
   _$$ShowNotificationStateCopyWith<_$ShowNotificationState> get copyWith =>
       throw _privateConstructorUsedError;

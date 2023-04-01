@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc_clean_architecture/presentation/base/error/error_cubit.dart';
+import 'package:bloc_clean_architecture/presentation/base/context/context_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/base/navigation/navigation_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/base/notification/notification_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_screen.dart';
@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => getIt.get<NavigationCubit>()),
           BlocProvider(create: (context) => getIt.get<NotificationCubit>()),
-          BlocProvider(create: (context) => getIt.get<ErrorCubit>()),
+          BlocProvider(create: (context) => getIt.get<NotificationCubit>()),
+          BlocProvider(create: (context) => getIt.get<ContextCubit>()),
         ],
         child: const HomeScreen(),
       ),

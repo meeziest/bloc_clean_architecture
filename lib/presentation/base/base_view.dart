@@ -1,3 +1,4 @@
+import 'package:bloc_clean_architecture/presentation/base/context/context_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/base/error/error_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/base/navigation/navigation_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/base/notification/notification_cubit.dart';
@@ -8,24 +9,32 @@ import 'base_cubit.dart';
 
 typedef BaseBlocWidgetBuilder<B, S> = Widget Function(BuildContext context, S state, B bloc);
 
-class BaseBlocBuilder<B extends BaseCubit<S>, S> extends StatelessWidget {
-  const BaseBlocBuilder({
+class BaseBlocWidget<B extends BaseCubit<S>, S> extends StatelessWidget {
+  const BaseBlocWidget({
     Key? key,
-    required this.controller,
+    required this.bloc,
     required this.builder,
     this.listener,
   }) : super(key: key);
 
-  final B controller;
+  final B bloc;
   final BaseBlocWidgetBuilder<B, S> builder;
   final BlocWidgetListener<S>? listener;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => controller,
+      create: (context) => bloc,
       child: MultiBlocListener(
         listeners: [
+          BlocListener<ContextCubit, ContextState>(
+            listener: (context, state) {
+              state.when(
+                initial: () {},
+                handleActionWithContext: (contextActivityHandler) => contextActivityHandler(context),
+              );
+            },
+          ),
           BlocListener<NavigationCubit, NavigationState>(
             listener: (context, state) {
               state.whenOrNull(
@@ -40,14 +49,14 @@ class BaseBlocBuilder<B extends BaseCubit<S>, S> extends StatelessWidget {
             listener: (context, state) {
               state.when(
                 noError: (withPop) => withPop ? Navigator.pop(context) : null,
-                withError: (callback, error) => callback(context),
+                withError: (contextActivityHandler, error) => contextActivityHandler(context),
               );
             },
           ),
           BlocListener<NotificationCubit, NotificationState>(
             listener: (context, state) => state.when(
               noNotification: (withPop) => withPop ? Navigator.pop(context) : null,
-              showNotification: (callback, notification) => callback(context),
+              showNotification: (contextActivityHandler, notification) => contextActivityHandler(context),
             ),
           ),
         ],

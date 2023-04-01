@@ -1,11 +1,9 @@
 part of 'notification_cubit.dart';
 
-typedef NotificationBuilder = void Function(BuildContext context);
-
 @freezed
 class NotificationState with _$NotificationState {
   const factory NotificationState.noNotification([@Default(false) bool withPop]) = NoNotificationState;
-  const factory NotificationState.showNotification(NotificationBuilder callback,
+  const factory NotificationState.showNotification(ContextActivityHandler handler,
       [@Default(null) NotificationModel? notificationModel]) = ShowNotificationState;
 }
 

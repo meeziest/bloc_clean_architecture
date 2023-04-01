@@ -19,24 +19,24 @@ mixin _$NotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)
+    required TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)
         showNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult? Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
     required TResult orElse(),
   }) =>
@@ -147,8 +147,8 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)
+    required TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)
         showNotification,
   }) {
     return noNotification(withPop);
@@ -158,8 +158,8 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult? Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
   }) {
     return noNotification?.call(withPop);
@@ -169,8 +169,8 @@ class _$NoNotificationState implements NoNotificationState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
     required TResult orElse(),
   }) {
@@ -229,7 +229,7 @@ abstract class _$$ShowNotificationStateCopyWith<$Res> {
       __$$ShowNotificationStateCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {NotificationBuilder callback, NotificationModel? notificationModel});
+      {ContextActivityHandler handler, NotificationModel? notificationModel});
 }
 
 /// @nodoc
@@ -243,14 +243,14 @@ class __$$ShowNotificationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? callback = null,
+    Object? handler = null,
     Object? notificationModel = freezed,
   }) {
     return _then(_$ShowNotificationState(
-      null == callback
-          ? _value.callback
-          : callback // ignore: cast_nullable_to_non_nullable
-              as NotificationBuilder,
+      null == handler
+          ? _value.handler
+          : handler // ignore: cast_nullable_to_non_nullable
+              as ContextActivityHandler,
       freezed == notificationModel
           ? _value.notificationModel
           : notificationModel // ignore: cast_nullable_to_non_nullable
@@ -262,17 +262,17 @@ class __$$ShowNotificationStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ShowNotificationState implements ShowNotificationState {
-  const _$ShowNotificationState(this.callback, [this.notificationModel = null]);
+  const _$ShowNotificationState(this.handler, [this.notificationModel = null]);
 
   @override
-  final NotificationBuilder callback;
+  final ContextActivityHandler handler;
   @override
   @JsonKey()
   final NotificationModel? notificationModel;
 
   @override
   String toString() {
-    return 'NotificationState.showNotification(callback: $callback, notificationModel: $notificationModel)';
+    return 'NotificationState.showNotification(handler: $handler, notificationModel: $notificationModel)';
   }
 
   @override
@@ -280,14 +280,13 @@ class _$ShowNotificationState implements ShowNotificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShowNotificationState &&
-            (identical(other.callback, callback) ||
-                other.callback == callback) &&
+            (identical(other.handler, handler) || other.handler == handler) &&
             (identical(other.notificationModel, notificationModel) ||
                 other.notificationModel == notificationModel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, callback, notificationModel);
+  int get hashCode => Object.hash(runtimeType, handler, notificationModel);
 
   @JsonKey(ignore: true)
   @override
@@ -300,35 +299,35 @@ class _$ShowNotificationState implements ShowNotificationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool withPop) noNotification,
-    required TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)
+    required TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)
         showNotification,
   }) {
-    return showNotification(callback, notificationModel);
+    return showNotification(handler, notificationModel);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool withPop)? noNotification,
-    TResult? Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult? Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
   }) {
-    return showNotification?.call(callback, notificationModel);
+    return showNotification?.call(handler, notificationModel);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool withPop)? noNotification,
-    TResult Function(
-            NotificationBuilder callback, NotificationModel? notificationModel)?
+    TResult Function(ContextActivityHandler handler,
+            NotificationModel? notificationModel)?
         showNotification,
     required TResult orElse(),
   }) {
     if (showNotification != null) {
-      return showNotification(callback, notificationModel);
+      return showNotification(handler, notificationModel);
     }
     return orElse();
   }
@@ -366,10 +365,10 @@ class _$ShowNotificationState implements ShowNotificationState {
 }
 
 abstract class ShowNotificationState implements NotificationState {
-  const factory ShowNotificationState(final NotificationBuilder callback,
+  const factory ShowNotificationState(final ContextActivityHandler handler,
       [final NotificationModel? notificationModel]) = _$ShowNotificationState;
 
-  NotificationBuilder get callback;
+  ContextActivityHandler get handler;
   NotificationModel? get notificationModel;
   @JsonKey(ignore: true)
   _$$ShowNotificationStateCopyWith<_$ShowNotificationState> get copyWith =>

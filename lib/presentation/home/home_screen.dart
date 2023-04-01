@@ -1,17 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bloc_clean_architecture/presentation/base/base_view.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocBuilder<HomeCubit, HomeState>(
-      controller: getIt.get<HomeCubit>(),
-      builder: (context, state, controller) {
+    return BaseBlocWidget<HomeCubit, HomeState>(
+      bloc: getIt.get<HomeCubit>(),
+      builder: (context, state, bloc) {
         return state.when(
           initial: () => const SizedBox(),
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -40,24 +42,24 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FloatingActionButton(
-                    onPressed: () => controller.increment(),
+                    onPressed: () => bloc.increment(),
                     tooltip: 'Increment',
                     child: const Icon(Icons.plus_one),
                   ),
                   FloatingActionButton(
-                    onPressed: () => controller.decrement(),
+                    onPressed: () => bloc.decrement(),
                     tooltip: 'Decrement',
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   FloatingActionButton(
-                    onPressed: () => controller.error.showError((context) {
+                    onPressed: () => bloc.error.showError((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
-                    onPressed: () => controller.notification.showNotification((context) {
+                    onPressed: () => bloc.notification.showNotification((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
                     }),
                     tooltip: 'Show notification',

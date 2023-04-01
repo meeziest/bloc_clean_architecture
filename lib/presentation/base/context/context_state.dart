@@ -1,5 +1,7 @@
 part of 'context_cubit.dart';
 
+typedef ContextActivityHandler = void Function(BuildContext context);
+
 @freezed
 class ContextState with _$ContextState {
   const factory ContextState.initial() = _Initial;

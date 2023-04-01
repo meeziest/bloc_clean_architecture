@@ -53,9 +53,7 @@ class BaseBlocBuilder<B extends BaseCubit<S>, S> extends StatelessWidget {
         ],
         child: BlocConsumer<B, S>(
           listener: listener ?? (context, s) {},
-          builder: (context, s) {
-            return builder(context, s, context.read<B>());
-          },
+          builder: (context, s) => builder(context, s, context.read<B>()),
         ),
       ),
     );

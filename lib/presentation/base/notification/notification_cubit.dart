@@ -12,5 +12,5 @@ class NotificationCubit extends Cubit<NotificationState> {
     emit(NotificationState.showNotification(notificationBuilder));
   }
 
-  void popNotification() => emit(const NotificationState.noNotification());
+  void popNotification() => emit(const NotificationState.noNotification(true));
 }

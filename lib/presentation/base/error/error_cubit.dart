@@ -9,4 +9,6 @@ class ErrorCubit extends Cubit<ErrorState> {
   ErrorCubit() : super(const ErrorState.noError());
 
   void showError(ErrorBuilder errorBuilder) => emit(ErrorState.withError(errorBuilder));
+
+  void popError(ErrorBuilder errorBuilder) => emit(const ErrorState.noError(true));
 }

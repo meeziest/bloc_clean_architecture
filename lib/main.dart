@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc_clean_architecture/presentation/base/context/context_cubit.dart';
-import 'package:bloc_clean_architecture/presentation/base/navigation/navigation_cubit.dart';
-import 'package:bloc_clean_architecture/presentation/base/notification/notification_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_screen.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => getIt.get<NavigationCubit>()),
-          BlocProvider(create: (context) => getIt.get<NotificationCubit>()),
-          BlocProvider(create: (context) => getIt.get<NotificationCubit>()),
-          BlocProvider(create: (context) => getIt.get<ContextCubit>()),
-        ],
+        providers: [BlocProvider(create: (context) => getIt.get<ContextCubit>())],
         child: const HomeScreen(),
       ),
     );

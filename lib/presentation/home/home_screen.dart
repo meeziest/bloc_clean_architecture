@@ -52,14 +52,14 @@ class HomeScreen extends StatelessWidget {
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   FloatingActionButton(
-                    onPressed: () => bloc.error.showError((context) {
+                    onPressed: () => bloc.context.handleWithContext((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
-                    onPressed: () => bloc.notification.showNotification((context) {
+                    onPressed: () => bloc.context.handleWithContext((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
                     }),
                     tooltip: 'Show notification',

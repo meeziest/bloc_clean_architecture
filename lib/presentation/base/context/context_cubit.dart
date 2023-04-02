@@ -5,8 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'context_cubit.freezed.dart';
 part 'context_state.dart';
 
-class ContextCubit extends Cubit<ContextState> {
-  ContextCubit() : super(const ContextState.initial());
+class ContextActivityCubit extends Cubit<ContextState> {
+  ContextActivityCubit() : super(const ContextState.handleActionWithContext(null));
 
   void handleWithContext(ContextActivityHandler handler) {
     emit(ContextState.handleActionWithContext(handler));

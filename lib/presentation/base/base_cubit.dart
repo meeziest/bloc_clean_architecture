@@ -5,14 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'context/context_cubit.dart';
 
 abstract class BaseCubit<S> extends Cubit<S> {
-  late final ContextCubit context;
+  late final ContextActivityCubit contextActivity;
 
   BaseCubit(S initialState) : super(initialState) {
     onInit();
   }
 
   void onInit() {
-    context = getIt.get<ContextCubit>();
+    contextActivity = getIt.get<ContextActivityCubit>();
   }
 
   @override

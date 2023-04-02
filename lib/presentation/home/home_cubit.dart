@@ -17,11 +17,11 @@ class HomeCubit extends BaseCubit<HomeState> {
 
     ///If success emit success else failure
     if (result) {
-      context.handleWithContext((context) {
+      contextActivity.handleWithContext((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
       });
     } else {
-      context.handleWithContext((context) {
+      contextActivity.handleWithContext((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
       });
     }

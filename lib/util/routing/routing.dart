@@ -5,8 +5,8 @@ import 'package:bloc_clean_architecture/util/routing/routing.gr.dart';
 class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: HomeRoute.page),
-    AutoRoute(page: LoginRoute.page)
+    AutoRoute(path: '/', page: HomeRoute.page),
+    AutoRoute(path: '/login', page: LoginRoute.page)
 
     /// routes go here
   ];

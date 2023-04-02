@@ -3,7 +3,7 @@ import 'package:bloc_clean_architecture/presentation/base/base_view.dart';
 import 'package:bloc_clean_architecture/presentation/login/login_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/login/state/login_state.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     return BaseBlocWidget<LoginCubit, LoginState>(
         bloc: getIt.get<LoginCubit>(),
         builder: (context, state, controller) {
-          return const SizedBox();
+          return const Scaffold();
         });
   }
 }

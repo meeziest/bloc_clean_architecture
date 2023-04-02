@@ -16,45 +16,47 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContextState {
+  ContextActivityHandler? get contextActivityHandler =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(ContextActivityHandler builder)
+    required TResult Function(ContextActivityHandler? contextActivityHandler)
         handleActionWithContext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(ContextActivityHandler builder)? handleActionWithContext,
+    TResult? Function(ContextActivityHandler? contextActivityHandler)?
+        handleActionWithContext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(ContextActivityHandler builder)? handleActionWithContext,
+    TResult Function(ContextActivityHandler? contextActivityHandler)?
+        handleActionWithContext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_HandleActionWithContext value)
         handleActionWithContext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_HandleActionWithContext value)? handleActionWithContext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_HandleActionWithContext value)? handleActionWithContext,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ContextStateCopyWith<ContextState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -63,6 +65,8 @@ abstract class $ContextStateCopyWith<$Res> {
   factory $ContextStateCopyWith(
           ContextState value, $Res Function(ContextState) then) =
       _$ContextStateCopyWithImpl<$Res, ContextState>;
+  @useResult
+  $Res call({ContextActivityHandler? contextActivityHandler});
 }
 
 /// @nodoc
@@ -74,118 +78,30 @@ class _$ContextStateCopyWithImpl<$Res, $Val extends ContextState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? contextActivityHandler = freezed,
+  }) {
+    return _then(_value.copyWith(
+      contextActivityHandler: freezed == contextActivityHandler
+          ? _value.contextActivityHandler
+          : contextActivityHandler // ignore: cast_nullable_to_non_nullable
+              as ContextActivityHandler?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$ContextStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'ContextState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(ContextActivityHandler builder)
-        handleActionWithContext,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(ContextActivityHandler builder)? handleActionWithContext,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(ContextActivityHandler builder)? handleActionWithContext,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_HandleActionWithContext value)
-        handleActionWithContext,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_HandleActionWithContext value)? handleActionWithContext,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_HandleActionWithContext value)? handleActionWithContext,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ContextState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$$_HandleActionWithContextCopyWith<$Res> {
+abstract class _$$_HandleActionWithContextCopyWith<$Res>
+    implements $ContextStateCopyWith<$Res> {
   factory _$$_HandleActionWithContextCopyWith(_$_HandleActionWithContext value,
           $Res Function(_$_HandleActionWithContext) then) =
       __$$_HandleActionWithContextCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({ContextActivityHandler builder});
+  $Res call({ContextActivityHandler? contextActivityHandler});
 }
 
 /// @nodoc
@@ -199,28 +115,28 @@ class __$$_HandleActionWithContextCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? builder = null,
+    Object? contextActivityHandler = freezed,
   }) {
     return _then(_$_HandleActionWithContext(
-      null == builder
-          ? _value.builder
-          : builder // ignore: cast_nullable_to_non_nullable
-              as ContextActivityHandler,
+      freezed == contextActivityHandler
+          ? _value.contextActivityHandler
+          : contextActivityHandler // ignore: cast_nullable_to_non_nullable
+              as ContextActivityHandler?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_HandleActionWithContext implements _HandleActionWithContext {
-  const _$_HandleActionWithContext(this.builder);
+class _$_HandleActionWithContext extends _HandleActionWithContext {
+  const _$_HandleActionWithContext(this.contextActivityHandler) : super._();
 
   @override
-  final ContextActivityHandler builder;
+  final ContextActivityHandler? contextActivityHandler;
 
   @override
   String toString() {
-    return 'ContextState.handleActionWithContext(builder: $builder)';
+    return 'ContextState.handleActionWithContext(contextActivityHandler: $contextActivityHandler)';
   }
 
   @override
@@ -228,11 +144,12 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HandleActionWithContext &&
-            (identical(other.builder, builder) || other.builder == builder));
+            (identical(other.contextActivityHandler, contextActivityHandler) ||
+                other.contextActivityHandler == contextActivityHandler));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, builder);
+  int get hashCode => Object.hash(runtimeType, contextActivityHandler);
 
   @JsonKey(ignore: true)
   @override
@@ -245,31 +162,30 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(ContextActivityHandler builder)
+    required TResult Function(ContextActivityHandler? contextActivityHandler)
         handleActionWithContext,
   }) {
-    return handleActionWithContext(builder);
+    return handleActionWithContext(contextActivityHandler);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(ContextActivityHandler builder)? handleActionWithContext,
+    TResult? Function(ContextActivityHandler? contextActivityHandler)?
+        handleActionWithContext,
   }) {
-    return handleActionWithContext?.call(builder);
+    return handleActionWithContext?.call(contextActivityHandler);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(ContextActivityHandler builder)? handleActionWithContext,
+    TResult Function(ContextActivityHandler? contextActivityHandler)?
+        handleActionWithContext,
     required TResult orElse(),
   }) {
     if (handleActionWithContext != null) {
-      return handleActionWithContext(builder);
+      return handleActionWithContext(contextActivityHandler);
     }
     return orElse();
   }
@@ -277,7 +193,6 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_HandleActionWithContext value)
         handleActionWithContext,
   }) {
@@ -287,7 +202,6 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_HandleActionWithContext value)? handleActionWithContext,
   }) {
     return handleActionWithContext?.call(this);
@@ -296,7 +210,6 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_HandleActionWithContext value)? handleActionWithContext,
     required TResult orElse(),
   }) {
@@ -307,11 +220,15 @@ class _$_HandleActionWithContext implements _HandleActionWithContext {
   }
 }
 
-abstract class _HandleActionWithContext implements ContextState {
-  const factory _HandleActionWithContext(final ContextActivityHandler builder) =
+abstract class _HandleActionWithContext extends ContextState {
+  const factory _HandleActionWithContext(
+          final ContextActivityHandler? contextActivityHandler) =
       _$_HandleActionWithContext;
+  const _HandleActionWithContext._() : super._();
 
-  ContextActivityHandler get builder;
+  @override
+  ContextActivityHandler? get contextActivityHandler;
+  @override
   @JsonKey(ignore: true)
   _$$_HandleActionWithContextCopyWith<_$_HandleActionWithContext>
       get copyWith => throw _privateConstructorUsedError;

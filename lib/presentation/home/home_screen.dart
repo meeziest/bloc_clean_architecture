@@ -42,28 +42,40 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   FloatingActionButton(
+                    heroTag: "Increment",
                     onPressed: () => bloc.increment(),
                     tooltip: 'Increment',
                     child: const Icon(Icons.plus_one),
                   ),
                   FloatingActionButton(
+                    heroTag: "Decrement",
                     onPressed: () => bloc.decrement(),
                     tooltip: 'Decrement',
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   FloatingActionButton(
-                    onPressed: () => bloc.context.handleWithContext((context) {
+                    heroTag: "Error",
+                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
-                    onPressed: () => bloc.context.handleWithContext((context) {
+                    heroTag: "Notification",
+                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
                       showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
                     }),
                     tooltip: 'Show notification',
                     child: const Icon(Icons.notifications),
+                  ),
+                  FloatingActionButton(
+                    heroTag: "Logout",
+                    onPressed: () {
+                      bloc.contextActivity.handleWithContext((context) => context.router.replaceNamed("/login"));
+                    },
+                    tooltip: 'Logout',
+                    child: const Icon(Icons.logout),
                   ),
                 ],
               ),

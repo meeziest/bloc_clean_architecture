@@ -22,12 +22,8 @@ class BaseBlocWidget<B extends BaseCubit<S>, S> extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => bloc,
-      child: MultiBlocListener(
-        listeners: [
-          BlocListener<ContextCubit, ContextState>(listener: (context, state) {
-            state.whenOrNull(handleActionWithContext: (contextActivityHandler) => contextActivityHandler(context));
-          }),
-        ],
+      child: BlocListener<ContextActivityCubit, ContextState>(
+        listener: (context, state) => state.contextActivityHandler != null ? state.contextActivityHandler!(context) : null,
         child: BlocConsumer<B, S>(
           listener: listener ?? (context, s) {},
           builder: (context, s) => builder(context, s, context.read<B>()),

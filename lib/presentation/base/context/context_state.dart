@@ -4,6 +4,7 @@ typedef ContextActivityHandler = void Function(BuildContext context);
 
 @freezed
 class ContextState with _$ContextState {
-  const factory ContextState.initial() = _Initial;
-  const factory ContextState.handleActionWithContext(ContextActivityHandler builder) = _HandleActionWithContext;
+  const ContextState._();
+
+  const factory ContextState.handleActionWithContext(ContextActivityHandler? contextActivityHandler) = _HandleActionWithContext;
 }

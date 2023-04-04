@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bloc_clean_architecture/generated/l10n.dart';
 import 'package:bloc_clean_architecture/presentation/base/base_view.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         return state.when(
           initial: () => const SizedBox(),
           loading: () => const Center(child: CircularProgressIndicator()),
-          failure: () => const Center(child: Text("ERROR")),
+          failure: () => Center(child: Text(S.current.error.toUpperCase())),
           success: (counter) => Scaffold(
             appBar: AppBar(
               title: const Text("Title"),
@@ -56,7 +57,9 @@ class HomeScreen extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "Error",
                     onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
+                      showDialog(
+                          context: context,
+                          builder: (context) => Center(child: Text(S.of(context).error)));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
@@ -64,7 +67,9 @@ class HomeScreen extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "Notification",
                     onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
+                      showDialog(
+                          context: context,
+                          builder: (context) => Center(child: Text(S.current.success)));
                     }),
                     tooltip: 'Show notification',
                     child: const Icon(Icons.notifications),
@@ -72,7 +77,8 @@ class HomeScreen extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "Logout",
                     onPressed: () {
-                      bloc.contextActivity.handleWithContext((context) => context.router.replaceNamed("/login"));
+                      bloc.contextActivity
+                          .handleWithContext((context) => context.router.replaceNamed("/login"));
                     },
                     tooltip: 'Logout',
                     child: const Icon(Icons.logout),

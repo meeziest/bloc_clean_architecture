@@ -21,6 +21,9 @@ dependencies:
   freezed: ^2.3.2
   get_it: ^7.2.0
   auto_route: ^6.0.5
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -33,4 +36,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
+flutter_intl:
+  enabled: true

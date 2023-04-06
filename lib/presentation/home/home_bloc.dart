@@ -12,13 +12,13 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
   @override
   Future<void> onEventHandler(HomeEvent event, Emitter emit) async {
     await event.when(
-      start: () => start(emit),
-      increment: () => increment(emit),
-      decrement: () => decrement(emit),
+      start: () => start(event, emit),
+      increment: () => increment(event, emit),
+      decrement: () => decrement(event, emit),
     );
   }
 
-  Future<void> start(Emitter emit) async {
+  Future<void> start(HomeEvent event, Emitter emit) async {
     emit(const HomeState.loading());
     bool result = await Future.delayed(const Duration(seconds: 2), () => true);
     emit(const HomeState.success(1));
@@ -34,11 +34,11 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     }
   }
 
-  Future<void> increment(Emitter emit) async {
+  Future<void> increment(HomeEvent event, Emitter emit) async {
     state.whenOrNull(success: (value) => emit(HomeState.success(value + 1)));
   }
 
-  Future<void> decrement(Emitter emit) async {
+  Future<void> decrement(HomeEvent event, Emitter emit) async {
     state.whenOrNull(success: (value) => emit(HomeState.success(value - 1)));
   }
 }

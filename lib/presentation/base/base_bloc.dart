@@ -9,7 +9,7 @@ abstract class BaseBloc<E, S> extends Bloc<E, S> {
 
   BaseBloc(S initialState) : super(initialState) {
     contextActivity = getIt.get<ContextActivityBloc>();
-    on<E>((event, emit) async => await onEventHandler(event, emit));
+    on<E>((event, emit) => onEventHandler(event, emit));
   }
 
   Future<void> onEventHandler(E event, Emitter emit);

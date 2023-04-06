@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 
 import 'context/context_cubit.dart';
 
-abstract class BaseBloc<E, S> extends Bloc<E, S> {
+abstract class BaseCubit<S> extends Cubit<S> {
   late final ContextActivityCubit contextActivity;
 
-  BaseBloc(S initialState) : super(initialState) {
+  BaseCubit(S initialState) : super(initialState) {
     onInit();
   }
 

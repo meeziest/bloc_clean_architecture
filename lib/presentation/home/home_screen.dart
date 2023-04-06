@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bloc_clean_architecture/generated/l10n.dart';
 import 'package:bloc_clean_architecture/presentation/base/base_view.dart';
-import 'package:bloc_clean_architecture/presentation/home/home_cubit.dart';
+import 'package:bloc_clean_architecture/presentation/home/home_bloc.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/material.dart';
+
+import 'event/home_event.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -12,11 +14,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocWidget<HomeCubit, HomeState>(
-      bloc: getIt.get<HomeCubit>(),
+    return BaseBlocWidget<HomeBloc, HomeEvent, HomeState>(
+      bloc: getIt.get<HomeBloc>(),
+      starterEvent: const HomeEvent.start(),
       builder: (context, state, bloc) {
         return state.when(
-          initial: () => const SizedBox(),
           loading: () => const Center(child: CircularProgressIndicator()),
           failure: () => Center(child: Text(S.current.error.toUpperCase())),
           success: (counter) => Scaffold(
@@ -44,42 +46,31 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   FloatingActionButton(
                     heroTag: "Increment",
-                    onPressed: () => bloc.increment(),
+                    onPressed: () => bloc.add(const HomeEvent.increment()),
                     tooltip: 'Increment',
                     child: const Icon(Icons.plus_one),
                   ),
                   FloatingActionButton(
                     heroTag: "Decrement",
-                    onPressed: () => bloc.decrement(),
+                    onPressed: () => bloc.add(const HomeEvent.decrement()),
                     tooltip: 'Decrement',
                     child: const Icon(Icons.exposure_minus_1),
                   ),
                   FloatingActionButton(
                     heroTag: "Error",
-                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => Center(child: Text(S.of(context).error)));
-                    }),
+                    onPressed: () => showDialog(context: context, builder: (context) => Center(child: Text(S.of(context).error))),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
                     heroTag: "Notification",
-                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => Center(child: Text(S.current.success)));
-                    }),
+                    onPressed: () => showDialog(context: context, builder: (context) => Center(child: Text(S.current.success))),
                     tooltip: 'Show notification',
                     child: const Icon(Icons.notifications),
                   ),
                   FloatingActionButton(
                     heroTag: "Logout",
-                    onPressed: () {
-                      bloc.contextActivity
-                          .handleWithContext((context) => context.router.replaceNamed("/login"));
-                    },
+                    onPressed: () => context.router.replaceNamed("/login"),
                     tooltip: 'Logout',
                     child: const Icon(Icons.logout),
                   ),

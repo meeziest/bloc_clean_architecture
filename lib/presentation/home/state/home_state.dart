@@ -6,7 +6,6 @@ part 'home_state.freezed.dart';
 class HomeState with _$HomeState {
   const HomeState._();
 
-  const factory HomeState.initial() = InitialState;
   const factory HomeState.loading() = LoadingState;
   const factory HomeState.failure() = FailureState;
   const factory HomeState.success(int value) = SuccessState;

@@ -2,18 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'context/context_cubit.dart';
+import 'context/context_activity_bloc.dart';
 
 abstract class BaseBloc<E, S> extends Bloc<E, S> {
-  late final ContextActivityCubit contextActivity;
+  late final ContextActivityBloc contextActivity;
 
   BaseBloc(S initialState) : super(initialState) {
-    onInit();
+    contextActivity = getIt.get<ContextActivityBloc>();
+    on<E>((event, emit) async => await onEventHandler(event, emit));
   }
 
-  void onInit() {
-    contextActivity = getIt.get<ContextActivityCubit>();
-  }
+  Future<void> onEventHandler(E event, Emitter emit);
 
   @override
   void onError(Object error, StackTrace stackTrace) {

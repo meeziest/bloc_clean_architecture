@@ -1,14 +1,16 @@
-import 'package:bloc_clean_architecture/presentation/base/base_cubit.dart';
+import 'package:bloc_clean_architecture/presentation/base/base_bloc.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
 import 'package:flutter/material.dart';
 
-class HomeCubit extends BaseCubit<HomeState> {
-  HomeCubit() : super(const HomeState.initial());
+import 'event/home_event.dart';
+
+class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
+  HomeBloc() : super(const HomeState.initial());
 
   @override
-  void onInit() async {
+  Stream<void> onInit() async* {
     super.onInit();
-    emit(const HomeState.loading());
+    yield const HomeState.loading();
 
     ///Fetch some data
     bool result = await Future.delayed(const Duration(seconds: 2), () => true);

@@ -1,6 +1,4 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'login_state.freezed.dart';
+part of 'login_bloc.dart';
 
 @freezed
 class LoginState with _$LoginState {

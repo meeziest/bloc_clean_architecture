@@ -24,4 +24,8 @@ class MainRepository {
   Future<int> update({required String columnId, required Map<String, dynamic> row}) async {
     return await _mainDatabase.update(table: _table, columnId: columnId, row: row);
   }
+
+  Future<void> dispose() async {
+    return await _mainDatabase.close();
+  }
 }

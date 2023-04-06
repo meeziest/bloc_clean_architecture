@@ -1,6 +1,7 @@
 import 'package:bloc_clean_architecture/presentation/base/context/context_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/login/login_cubit.dart';
+import 'package:bloc_clean_architecture/util/app_scope.dart';
 import 'package:bloc_clean_architecture/util/routing/routing.dart';
 import 'package:get_it/get_it.dart';
 
@@ -15,5 +16,8 @@ class ServiceLocator {
 
     ///Init appRoute
     getIt.registerLazySingleton<AppRouter>(() => AppRouter());
+
+    ///Init appScope
+    getIt.registerLazySingleton<AppScope>(() => AppScope());
   }
 }

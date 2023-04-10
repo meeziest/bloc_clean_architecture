@@ -3,6 +3,7 @@ import 'package:bloc_clean_architecture/generated/l10n.dart';
 import 'package:bloc_clean_architecture/presentation/base/base_view.dart';
 import 'package:bloc_clean_architecture/presentation/home/home_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
+import 'package:bloc_clean_architecture/util/app_scope.dart';
 import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,11 @@ class HomeScreen extends StatelessWidget {
           failure: () => Center(child: Text(S.current.error.toUpperCase())),
           success: (counter) => Scaffold(
             appBar: AppBar(
-              title: const Text("Title"),
+              title: Text(appScope.flavor == Flavor.dev
+                  ? "Title Dev"
+                  : appScope.flavor == Flavor.prod
+                      ? "Title prod"
+                      : "Title qa"),
             ),
             body: Center(
               child: Column(

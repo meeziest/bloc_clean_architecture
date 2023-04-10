@@ -1,12 +1,9 @@
 import 'package:bloc_clean_architecture/presentation/base/base_cubit.dart';
 import 'package:bloc_clean_architecture/presentation/home/state/home_state.dart';
-import 'package:bloc_clean_architecture/repositories/main_repository.dart';
 import 'package:flutter/material.dart';
 
 class HomeCubit extends BaseCubit<HomeState> {
   HomeCubit() : super(const HomeState.initial());
-  final MainRepository _repository = MainRepository();
-
   @override
   void onInit() async {
     super.onInit();

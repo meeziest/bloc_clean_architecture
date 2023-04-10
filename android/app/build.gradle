@@ -53,6 +53,26 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        prod {
+            dimension "default"
+            resValue "string", "bloc_clean_architecture", "Bloc clean architecture prod"
+        }
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+            resValue "string", "bloc_clean_architecture", "Bloc clean architecture dev"
+            versionNameSuffix ".dev"
+        }
+        qa {
+            dimension "default"
+            applicationIdSuffix ".qa"
+            resValue "string", "bloc_clean_architecture", "Bloc clean architecture qa"
+            versionNameSuffix ".qa"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

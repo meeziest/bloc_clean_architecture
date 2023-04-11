@@ -7,7 +7,7 @@ import 'base_bloc.dart';
 typedef BaseBlocWidgetBuilder<B, S> = Widget Function(BuildContext context, S state, B bloc);
 
 class BaseBlocWidget<B extends BaseBloc<E, S>, E, S> extends StatelessWidget {
-  const BaseBlocWidget({
+  BaseBlocWidget({
     Key? key,
     required this.bloc,
     required this.starterEvent,
@@ -20,10 +20,14 @@ class BaseBlocWidget<B extends BaseBloc<E, S>, E, S> extends StatelessWidget {
   final BaseBlocWidgetBuilder<B, S> builder;
   final BlocWidgetListener<S>? listener;
 
+  final ContextActivityBloc contextActivity = ContextActivityBloc();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => bloc..add(starterEvent),
+      create: (context) => bloc
+        ..add(starterEvent)
+        ..withContextHandler(contextActivity),
       child: BlocListener<ContextActivityBloc, ContextActivityState>(
         listener: (context, state) => state.contextActivityHandler != null ? state.contextActivityHandler!(context) : null,
         child: BlocConsumer<B, S>(

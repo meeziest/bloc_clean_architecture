@@ -24,11 +24,11 @@ class HomeBloc extends BaseBloc<HomeEvent, HomeState> {
     emit(const HomeState.success(1));
 
     if (result) {
-      contextActivity.add(ContextActivityEvent.handleContextActivity((context) {
+      contextActivity?.add(ContextActivityEvent.handleContextActivity((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
       }));
     } else {
-      contextActivity.add(ContextActivityEvent.handleContextActivity((context) {
+      contextActivity?.add(ContextActivityEvent.handleContextActivity((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
       }));
     }

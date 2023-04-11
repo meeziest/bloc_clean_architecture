@@ -22,9 +22,7 @@ class HomeScreen extends StatelessWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           failure: () => Center(child: Text(S.current.error.toUpperCase())),
           success: (counter) => Scaffold(
-            appBar: AppBar(
-              title: const Text("Title"),
-            ),
+            appBar: AppBar(title: const Text("Title")),
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

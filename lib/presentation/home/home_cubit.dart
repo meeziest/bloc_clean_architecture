@@ -6,7 +6,6 @@ class HomeCubit extends BaseCubit<HomeState> {
   HomeCubit() : super(const HomeState.initial());
   @override
   void onInit() async {
-    super.onInit();
     emit(const HomeState.loading());
 
     ///Fetch some data
@@ -16,11 +15,11 @@ class HomeCubit extends BaseCubit<HomeState> {
 
     ///If success emit success else failure
     if (result) {
-      contextActivity.handleWithContext((context) {
+      contextActivity?.handleWithContext((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Success')));
       });
     } else {
-      contextActivity.handleWithContext((context) {
+      contextActivity?.handleWithContext((context) {
         showDialog(context: context, builder: (context) => const Center(child: Text('Error')));
       });
     }

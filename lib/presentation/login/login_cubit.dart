@@ -5,7 +5,5 @@ class LoginCubit extends BaseCubit<LoginState> {
   LoginCubit() : super(const LoginState.initial());
 
   @override
-  void onInit() {
-    super.onInit();
-  }
+  void onInit() {}
 }

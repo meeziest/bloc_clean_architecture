@@ -1,18 +1,19 @@
 import 'package:bloc/bloc.dart';
-import 'package:bloc_clean_architecture/util/service_locator.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'context/context_cubit.dart';
 
 abstract class BaseCubit<S> extends Cubit<S> {
-  late final ContextActivityCubit contextActivity;
+  ContextActivityCubit? contextActivity;
 
   BaseCubit(S initialState) : super(initialState) {
     onInit();
   }
 
-  void onInit() {
-    contextActivity = getIt.get<ContextActivityCubit>();
+  void onInit();
+
+  void withContextHandler(ContextActivityCubit contextActivityCubit) {
+    contextActivity = contextActivityCubit;
   }
 
   @override

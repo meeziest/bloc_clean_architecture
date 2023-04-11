@@ -61,20 +61,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                   FloatingActionButton(
                     heroTag: "Error",
-                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => Center(child: Text(S.of(context).error)));
+                    onPressed: () => bloc.contextActivity?.handleWithContext((context) {
+                      showDialog(context: context, builder: (context) => Center(child: Text(S.of(context).error)));
                     }),
                     tooltip: 'Show error',
                     child: const Icon(Icons.error),
                   ),
                   FloatingActionButton(
                     heroTag: "Notification",
-                    onPressed: () => bloc.contextActivity.handleWithContext((context) {
-                      showDialog(
-                          context: context,
-                          builder: (context) => Center(child: Text(S.current.success)));
+                    onPressed: () => bloc.contextActivity?.handleWithContext((context) {
+                      showDialog(context: context, builder: (context) => Center(child: Text(S.current.success)));
                     }),
                     tooltip: 'Show notification',
                     child: const Icon(Icons.notifications),
@@ -82,8 +78,7 @@ class HomeScreen extends StatelessWidget {
                   FloatingActionButton(
                     heroTag: "Logout",
                     onPressed: () {
-                      bloc.contextActivity
-                          .handleWithContext((context) => context.router.replaceNamed("/login"));
+                      bloc.contextActivity?.handleWithContext((context) => context.router.replaceNamed("/login"));
                     },
                     tooltip: 'Logout',
                     child: const Icon(Icons.logout),

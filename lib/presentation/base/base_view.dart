@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'base_cubit.dart';
 
-typedef BaseBlocWidgetBuilder<B, S> = Widget Function(BuildContext context, S state, B bloc);
+typedef BaseBlocWidgetBuilder<B, S> = Widget Function(
+    BuildContext context, S state, B bloc);
 
 class BaseBlocWidget<B extends BaseCubit<S>, S> extends StatelessWidget {
   BaseBlocWidget({
@@ -22,10 +23,19 @@ class BaseBlocWidget<B extends BaseCubit<S>, S> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => bloc..withContextHandler(contextActivity),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => contextActivity,
+        ),
+        BlocProvider(
+          create: (context) => bloc..withContextHandler(contextActivity),
+        ),
+      ],
       child: BlocListener<ContextActivityCubit, ContextState>(
-        listener: (context, state) => state.contextActivityHandler != null ? state.contextActivityHandler!(context) : null,
+        listener: (context, state) => state.contextActivityHandler != null
+            ? state.contextActivityHandler!(context)
+            : null,
         child: BlocConsumer<B, S>(
           listener: listener ?? (context, s) {},
           builder: (context, s) => builder(context, s, context.read<B>()),

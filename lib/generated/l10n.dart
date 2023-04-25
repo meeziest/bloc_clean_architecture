@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -69,6 +70,10 @@ class S {
       args: [],
     );
   }
+}
+
+extension LocaleFromContext on BuildContext {
+  S get L => S.of(this);
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
